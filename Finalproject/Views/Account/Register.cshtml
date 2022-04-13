@@ -1,0 +1,172 @@
+﻿@model VmUserRegister
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="titleforall">
+    <div class="titlecontact">
+        <i class="fa-solid fa-house"></i>
+        <p>Register</p>
+    </div>
+
+</section>
+
+
+<section id="left">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="forborder">
+                    <h5>Information</h5>
+                    <a href="">
+                        <p>About us</p>
+                    </a>
+                    <a href="">
+                        <p>Delivery Information </p>
+                    </a>
+                    <a href="">
+                        <p>Privacy Policy </p>
+                    </a>
+                    <a href="">
+                        <p>Terms & Conditions </p>
+                    </a>
+                    <a href="">
+                        <p>Contact Us </p>
+                    </a>
+                </div>
+
+                <img class="reklamucun" src="/img/left-banner-315x460 (1).jpg" alt="">
+                <div class="forborder">
+                    <h5>Latest</h5>
+
+                    <div class="d-flex forhoverimage">
+                        <a href="">
+                            <div class="imgg">
+
+                            </div>
+                            <div class="latest">
+                                MacBook Pro (Retina, 15-inch, 8-Core CPU)
+                                <div class="d-flex">
+                                    <p class="latestp1">$26.00</p>
+                                    <p class="latestp2">$241.99</p>
+                                </div>
+                            </div>
+
+                        </a>
+
+                    </div>
+                    <div class="d-flex forhoverimage">
+                        <a href="">
+                            <div class="imgg">
+
+                            </div>
+                            <div class="latest">
+                                MacBook Pro (Retina, 15-inch, 8-Core CPU)
+                                <div class="d-flex">
+                                    <p class="latestp1">$26.00</p>
+                                    <p class="latestp2">$241.99</p>
+                                </div>
+                            </div>
+
+                        </a>
+
+                    </div>
+                    <div class="d-flex forhoverimage">
+                        <a href="">
+
+                            <div class="imgg">
+
+                            </div>
+                            <div class="latest">
+                                MacBook Pro (Retina, 15-inch, 8-Core CPU)
+                                <div class="d-flex">
+                                    <p class="latestp1">$26.00</p>
+                                    <p class="latestp2">$241.99</p>
+                                </div>
+                            </div>
+
+                        </a>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="col-lg-8">
+                <div class="registerfull">
+                    <h5>Register Account</h5>
+                    <p>If you already have an account with us, please login at the login page.</p>
+
+                    <form class="user" asp-controller="account" asp-action="register" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="personaldetails">
+                            <h5>Your Personal Details</h5>
+
+                            <label class="col-sm-2 control-label" for="input-firstname">First Name</label>
+                            <div class="col-sm-10 pasword1">
+                                <input type="text" asp-for="@Model.Name" class="form-control form-control-user"
+                                       id="exampleInputPassword" placeholder="Name">
+                            </div>
+                            <label class="col-sm-2 control-label" for="input-firstname">Last Name</label>
+                            <div class="col-sm-10 pasword1">
+                                <input type="text" asp-for="@Model.Surname" class="form-control form-control-user"
+                                       id="exampleInputPassword" placeholder="SurName">
+                            </div>
+                            <label class="col-sm-2 control-label" for="input-firstname">Email</label>
+                            <div class="col-sm-10 pasword1">
+                                <input type="email" asp-for="@Model.Email" class="form-control form-control-user"
+                                       id="exampleInputPassword" placeholder="Email">
+                            </div>
+                            <label class="col-sm-2 control-label" for="input-firstname">Username</label>
+                            <div class="col-sm-10 pasword1">
+                                <input type="text" asp-for="@Model.UsarName" class="form-control form-control-user"
+                                       id="exampleInputPassword" placeholder="Usarname">
+                            </div>
+                            <label class="col-sm-2 control-label" for="input-firstname">Telephone</label>
+
+                            <div class="col-sm-10 pasword1">
+                                <input type="tel" asp-for="@Model.Phone" class="form-control form-control-user"
+                                       id="exampleInputPassword" placeholder="Phone">
+                            </div>
+                        </div>
+                        <div class="passworddetails">
+                            <h5>Your Password</h5>
+                            <label class="col-sm-2 control-label" for="input-firstname">Password</label>
+                            <div class="col-sm-10 pasword1">
+                                <div class="col-sm-10 pasword1">
+                                    <input type="password" asp-for="@Model.Password" class="form-control form-control-user"
+                                           id="exampleInputPassword" placeholder="Password">
+                                </div>
+                            </div>
+                            <label class="col-sm-2 control-label" for="input-firstname">Pass Confirm</label>
+                            <div class="col-sm-10 pasword1">
+                                <div class="col-sm-10 pasword1">
+                                    <input type="password" asp-for="@Model.RepaetPassword" class="form-control form-control-user"
+                                           id="exampleInputPassword" placeholder="Password Repaet">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-right">
+                            I have read and agree to the <a href=""
+                                                            class="agree"><b>Privacy Policy</b></a>
+                            <input type="checkbox" name="agree" value="1">
+                            &nbsp;
+                            <input type="submit" value="Register" class="btn btn-primary registerbutton">
+                        </div>
+                    </form>
+                   
+                   
+                </div>
+
+            </div>
+
+
+        </div>
+</section>
+<section id="button">
+    <a class="top_button" title="Back To Top" href="#" style="display: block;"></a>
+</section>
+
+

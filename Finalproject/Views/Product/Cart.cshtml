@@ -1,0 +1,136 @@
+﻿@model List<Product>
+@{ ViewData["Title"] = "Index"; }
+
+<section id="titleforall">
+    <div class="titlecontact">
+        <i class="fa-solid fa-house"></i>
+        <p>Product Wich You Add To Cart</p>
+    </div>
+
+</section>
+
+
+<section id="left">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="container">
+                        <div class="row">
+                            @foreach (var item in Model)
+                            { 
+
+
+                <div class="col-lg-4   col-md-4 col-6  specialsimage">
+                    <div class="card">
+                        <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@item.Id">
+                            <img src="~/UploadsProducts/@item.Image" alt="">
+                        </a>
+
+                        <span class="specialspan">@item.Discountfaiz</span>
+                        <div class="card-body">
+                            <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@item.Id">
+                                <h6 class="card-title">@item.Model (@item.Color) </h6>
+                            </a>
+
+                            <div class="d-flex">
+                                @{DateTime? itemDiscount = item.DiscountDate; }
+                                @if (itemDiscount == null)
+                                {
+                        <h5 class="latestp1">@item.Price</h5> }
+                    else
+                    {
+                        <h5 class="latestp1">@item.DiscountPrice</h5>
+                                            <p class="latestp2">@item.Price</p>}
+
+
+
+                            </div>
+                            <i class="fa-solid fa-cart-shopping c1"></i>
+                            <a asp-controller="Product" asp-action="addToCart" asp-route-id="@item.Id" class="btn foradd ">Delete Cart</a>
+                        </div>
+                    </div>
+                </div>}
+                     
+                        </div>
+                    </div>
+
+                </div>
+                <div style=" text-align: center; margin-top: 30px;">
+                    <a style="text-decoration: none; color: white; background: red; font-size: 20px; border-radius: 15px; padding: 10px 20px 10px 20px;" href="">Submit</a>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="forborder">
+                    <h5>Information</h5>
+                    <a href="">
+                        <p>About us</p>
+                    </a>
+                    <a href="">
+                        <p>Delivery Information </p>
+                    </a>
+                    <a href="">
+                        <p>Privacy Policy </p>
+                    </a>
+                    <a href="">
+                        <p>Terms & Conditions </p>
+                    </a>
+                    <a href="">
+                        <p>Contact Us </p>
+                    </a>
+                </div>
+
+                <a href=""><img class="reklamucun" src="/img/left-banner-315x460 (1).jpg" alt=""></a>
+                <div class="forborder">
+                    <h5>Latest</h5>
+
+                    @{ int v = 0; }
+                    @foreach (var item in Model.OrderByDescending(m => m.DiscountPrice))
+                    {
+                        if (v < 3)
+                        {
+                            DateTime? itemDiscount = item.DiscountDate;
+                            if (itemDiscount != null && itemDiscount > DateTime.Now)
+                            {
+        <div class="d-flex forhoverimage">
+            <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@item.Id">
+
+                <img src="~/UploadsProducts/@item.Image" alt="">
+                <div class="latest">
+                    <p> @item.Brand (@item.Model)</p>
+                    <div class="d-flex">
+                        <p class="latestp1">@item.DiscountPrice</p>
+                        <p class="latestp2">@item.Price</p>
+                    </div>
+                </div>
+
+            </a>
+
+        </div>v++;
+    }
+
+}
+
+}
+
+
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+</section>
+
+
+<section id="button">
+    <a class="top_button" title="Back To Top" href="#" style="display: block;"></a>
+</section>
+
+

@@ -1,0 +1,136 @@
+﻿@model VmHome
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section id="titleforall">
+    <div class="titlecontact">
+        <i class="fa-solid fa-house"></i>
+        <p>Blogs</p>
+    </div>
+</section>
+
+<section id="left">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    @foreach (var item in Model.Blog)
+                    {
+                <div class="col-lg-6 forimagetop5">
+                    <div class="q3">
+                        <h6>.</h6>
+                        <img src="~/UploadsBlog/@item.Image" alt="">
+                        <a asp-controller="Blog" asp-action="Blogdetails" asp-route-id="@item.Id">
+                            <h5>@item.Uptitle</h5>
+                        </a>
+                        <div class="d-flex bgcolor">
+                            <i class="fa-solid fa-calendar"></i>
+                            <p>@item.CreatedDate</p>
+                        </div>
+                        <p>
+                            @(item.Title.Length>240? item.Title.Substring(0,240)+"..." : item.Title)
+                        </p>
+                        <a class="backcolorfora" asp-controller="Blog" asp-action="Blogdetails" asp-route-id="@item.Id">
+                            <p>
+                                Read More
+                            </p>
+                        </a>
+                    </div>
+
+
+                </div>}
+                    <nav class="mt-5" aria-label="...">
+                        <ul class="pagination">
+                            <li class="page-item @(Model.Page==1?"disabled":"")">
+                                <a class="page-link pageItemCount" asp-controller="Blog" asp-action="index" asp-route-page="@(Model.Page-1)" asp-route-itemCount="@Model.ItemCount">Previous</a>
+                            </li>
+                            @for (int i = 1; i <= Model.PageCount; i++)
+                            {
+                <li class="page-item @(Model.Page==i?"active":"")" aria-current="page">
+                    <a class="page-link pageItemCount" asp-controller="Blog" asp-action="index" asp-route-page="@i" asp-route-itemCount="@Model.ItemCount">@i</a>
+                </li>
+}
+                            <li class="page-item @(Model.Page==Model.PageCount?"disabled":"")">
+                                <a class="page-link pageItemCount" asp-controller="Blog" asp-action="index" asp-route-page="@(Model.Page+1)" asp-route-itemCount="@Model.ItemCount">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="forborder">
+                    <h5>Information</h5>
+                    <a href="">
+                        <p>About us</p>
+                    </a>
+                    <a href="">
+                        <p>Delivery Information </p>
+                    </a>
+                    <a href="">
+                        <p>Privacy Policy </p>
+                    </a>
+                    <a href="">
+                        <p>Terms & Conditions </p>
+                    </a>
+                    <a href="">
+                        <p>Contact Us </p>
+                    </a>
+                </div>
+                @foreach (var item in Model.Advertisings)
+                {
+                    <div>
+                        <a href="@item.Link"><img class="reklamucun" src="~/UploadsAdvertising/@item.Image" alt=""></a>
+                    </div>
+                }
+
+
+                <div class="forborder">
+                    <h5>Latest</h5>
+
+                    @{ int v = 0; }
+                    @foreach (var item in Model.Products.OrderByDescending(m => m.Color))
+                    {
+                        if (v < 3)
+                        {
+                            DateTime? itemDiscount = item.DiscountDate;
+                            if (itemDiscount != null && itemDiscount > DateTime.Now)
+                            {
+            <div class="d-flex forhoverimage">
+                <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@item.Id">
+
+                    <img src="~/UploadsProducts/@item.Image" alt="">
+                    <div class="latest">
+                        <p> @item.Brand (@item.Model)</p>
+                        <div class="d-flex">
+                            <p class="latestp1">@item.DiscountPrice</p>
+                            <p class="latestp2">@item.Price</p>
+                        </div>
+                    </div>
+
+                </a>
+
+            </div>v++;
+        }
+
+    }
+
+}
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+</section>
+
+<section id="button">
+    <a class="top_button" title="Back To Top" href="#" style="display: block;"></a>
+</section>
+

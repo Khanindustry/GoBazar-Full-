@@ -1,0 +1,117 @@
+﻿@model VmContact
+@inject IHttpContextAccessor _httpContext
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section id="titleforall">
+    <div class="titlecontact">
+        <i class="fa-solid fa-house"></i>
+        <p>Contact Us</p>
+    </div>
+
+</section>
+
+
+<section id="contact">
+    <div class="container paddingfor1">
+        <div class="row ">
+            <div class="col-lg-4 part1">
+                <a href="/home.html"> <img class="" src="/img/logo.png" alt=""></a>
+
+
+                <h6>Gobazar - Best Online Store</h6>
+
+                <p>@Model.Setting.Location</p>
+                <div class="forp"><a class="nondecaration1" href="">View Google Map</a></div>
+                <h6>Telephone</h6>
+                <p>@Model.Setting.Phone</p>
+                <h6>Fax</h6>
+                <p>@Model.Setting.Fax</p>
+                <h6>Opening Times</h6>
+                <p>@Model.Setting.OpeninTime</p>
+                <h6>Comments</h6>
+                <p>
+                   @Model.Setting.Comments
+                </p>
+            </div>
+            <div class="col-lg-8">
+                <div class="contact-form">
+
+                    <h2 class="heading-title heading-contact">Contact Form</h2>
+                    @if (_httpContext.HttpContext.Session.GetString("Success") != null)
+                    {
+                        <div class="alert alert-success">
+                            @_httpContext.HttpContext.Session.GetString("Success")
+                        </div>
+
+                        _httpContext.HttpContext.Session.Remove("Success");
+                    }
+
+                    @if (_httpContext.HttpContext.Session.GetString("Error") != null)
+                    {
+                        <div class="alert alert-danger">
+                            @_httpContext.HttpContext.Session.GetString("Error")
+                        </div>
+
+                        _httpContext.HttpContext.Session.Remove("Error");
+                    }
+               
+                    <form asp-controller="contact" asp-action="message" method="post" class="wpcf7-form">
+                        <p>
+
+                            <label class="form-group">
+                                <div>
+                                    <label class=" control-label" for="input-name">Your Name</label>
+                                    <input asp-for="@Model.Contacts.Name"
+                                           class="form-control" aria-invalid="false">
+                                </div>
+                            </label><br>
+                                    <div>
+                                        <label class=" control-label" for="input-email">E-Mail Address</label>
+                                        <input asp-for="@Model.Contacts.Email"
+                                               class="form-control" aria-invalid="false">
+                                    </div>
+
+                            <br>
+                            <div>
+                                <label class="control-label" for="input-message">Message</label>
+                                <textarea rows="8" asp-for="@Model.Contacts.Destiraction" 
+                                          class="form-control" aria-invalid="false">
+                                   </textarea>
+                            </div>
+                            
+                            <br>
+                            @*<input type="submit" value="Send" class="wpcf7-form-control wpcf7-submit">*@
+                            <input type="submit" value="Submit" class="btn btn-primary registerbutton">
+                            <span class="ajax-loader"></span>
+                        </p>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section id="map">
+    <div class="map">
+        <iframe class="map1"
+                src="@Model.Setting.Map"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+</section>
+<section id="button">
+    <a class="top_button" title="Back To Top" href="#" style="display: block;"></a>
+</section>
+
+

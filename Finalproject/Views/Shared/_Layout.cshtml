@@ -1,0 +1,231 @@
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@{ string controller = this.ViewContext.RouteData.Values["controller"].ToString();
+
+
+    string cart1 = HttpContextAccessor.HttpContext.Request.Cookies["cart1"];
+    string BasketCount1 = "0";
+
+
+    if (!string.IsNullOrEmpty(cart1))
+    {
+        BasketCount1 = cart1.Split("-").Length.ToString();
+    }
+
+
+    var basketcountsum = Convert.ToInt32(BasketCount1);
+
+    @inject UserManager<IdentityUser> _userManager
+    @inject SignInManager<IdentityUser> _signInManager
+} 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gobazar-Best Online Store</title>
+    <link rel="shortcut icon" href="~/img/images.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+          integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+          integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/scss/style.css">
+</head>
+
+<body>
+
+
+
+
+    <header id="header">
+        <div class="container fp">
+            <div class="row">
+                @await Component.InvokeAsync("VcLayout2")
+                <div class="col-lg-4 d-flex">
+                    <select class="form-control-select" name="" id="">
+                        <option value="0">All Categories</option>
+
+
+                    </select>
+                    <form asp-controller="Product" asp-action="Search" method="get" class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search Product Here..."
+                               aria-label="Search" name="searchData">
+                        <div>
+                            <button class="btn btn-outline-danger bu1" type="submit">Search</button>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="col-lg-4 icons">
+                    
+                    <div class="header_wishlist">
+
+
+
+                        <a type="button" class=" " data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user">
+
+                            </i>
+                        </a>
+
+                        @if (_signInManager.IsSignedIn(User))
+                        {
+            <ul class="dropdown-menu">
+                <li>
+                    <a class="nav-link text-dark">@_userManager.GetUserName(User)</a>
+                </li>
+
+                <li>
+                    <a asp-controller="Account" asp-action="Logout">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        Logout
+                    </a>
+                </li>
+
+            </ul> }
+                        else
+                        {
+
+
+<ul class="dropdown-menu">
+    <li>
+        <a asp-controller="Account" asp-action="Login">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            Login
+        </a>
+    </li>
+    <li>
+        <a asp-controller="Account" asp-action="Register" a>
+            <i class="fa-solid fa-registered"></i>
+            Register
+        </a>
+    </li>
+</ul>}
+
+
+
+
+
+
+
+
+
+                    </div>
+                    <div class="header_wishlist">
+
+                        <a asp-controller="Product" asp-action="Cart"> <i class="fa-solid fa-cart-shopping"></i></a>
+                        <span class="markershopping">
+                        @basketcountsum
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </header>
+
+    @await Component.InvokeAsync("VcNavbar")
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    @RenderBody()
+
+
+
+    @await Component.InvokeAsync("VcLayout")
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+            integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://kit.fontawesome.com/fd55c34fa1.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.10.2/dist/umd/popper.min.js"
+            integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+            integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+            crossorigin="anonymous"></script>
+    <script>
+
+
+
+
+        $('.owl-blog').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            dots: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                1000: {
+                    items: 3
+                }
+            }
+        })
+        $('.owl-slider').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            dots: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                1000: {
+                    items: 1
+                }
+            }
+        })
+
+
+
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            dots: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 5
+                }
+            }
+        })
+
+
+
+    </script>
+    <script src="~/js/script.js"></script>
+</body>
+
+</html>

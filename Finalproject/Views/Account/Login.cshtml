@@ -1,0 +1,153 @@
+﻿@model VmUserLogin
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section id="titleforall">
+    <div class="titlecontact">
+        <i class="fa-solid fa-house"></i>
+        <p>Account>>Login</p>
+    </div>
+
+</section>
+
+
+<section id="left">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="forborder">
+                    <h5>Information</h5>
+                    <a href="">
+                        <p>About us</p>
+                    </a>
+                    <a href="">
+                        <p>Delivery Information </p>
+                    </a>
+                    <a href="">
+                        <p>Privacy Policy </p>
+                    </a>
+                    <a href="">
+                        <p>Terms & Conditions </p>
+                    </a>
+                    <a href="">
+                        <p>Contact Us </p>
+                    </a>
+                </div>
+
+                <img class="reklamucun" src="/img/left-banner-315x460 (1).jpg" alt="">
+                <div class="forborder">
+                    <h5>Latest</h5>
+
+                    <div class="d-flex forhoverimage">
+                        <a href="">
+                            <div class="imgg">
+
+                            </div>
+                            <div class="latest">
+                                MacBook Pro (Retina, 15-inch, 8-Core CPU)
+                                <div class="d-flex">
+                                    <p class="latestp1">$26.00</p>
+                                    <p class="latestp2">$241.99</p>
+                                </div>
+                            </div>
+
+                        </a>
+
+                    </div>
+                    <div class="d-flex forhoverimage">
+                        <a href="">
+                            <div class="imgg">
+
+                            </div>
+                            <div class="latest">
+                                MacBook Pro (Retina, 15-inch, 8-Core CPU)
+                                <div class="d-flex">
+                                    <p class="latestp1">$26.00</p>
+                                    <p class="latestp2">$241.99</p>
+                                </div>
+                            </div>
+
+                        </a>
+
+                    </div>
+                    <div class="d-flex forhoverimage">
+                        <a href="">
+
+                            <div class="imgg">
+
+                            </div>
+                            <div class="latest">
+                                MacBook Pro (Retina, 15-inch, 8-Core CPU)
+                                <div class="d-flex">
+                                    <p class="latestp1">$26.00</p>
+                                    <p class="latestp2">$241.99</p>
+                                </div>
+                            </div>
+
+                        </a>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="col-lg-4 forloginmargin">
+                <h5>Account Login</h5>
+                <div class="forloginboder">
+                    <h6>New Customer</h6>
+                    <p>Register Account</p>
+                    <p>By creating an account you will be able to shop faster, be up to date on  an order's status, and keep track of the orders you have previously  made.</p>
+                    <a asp-controller="Account" asp-action="Register">Continue</a>
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-4 custemuser">
+                <div class="custemuserborder">
+                    <h5>Returning Customer</h5>
+                    <p>I am a returning customer</p>
+
+
+
+                    <form class="user"  asp-controller="account" asp-action="login" method="post">
+                        <div class="form-group">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <label class="control-label" for="input-email">E-Mail Address</label>
+                            <input type="email" asp-for="@Model.Email" class="form-control form-control-user"
+                                   id="exampleInputPassword" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="input-password">Password</label>
+                            <input type="password" asp-for="@Model.Password" class="form-control form-control-user"
+                                   id="exampleInputPassword" placeholder="Password">
+
+                        </div>
+
+
+
+                        <button type="submit" class="loginbutton btn btn-danger">
+                            Login
+                        </button>
+                    </form>
+                 
+                   
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+</section>
+
+<section id="button">
+    <a class="top_button" title="Back To Top" href="#" style="display: block;"></a>
+</section>
+

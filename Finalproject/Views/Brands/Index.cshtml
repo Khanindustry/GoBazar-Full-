@@ -1,0 +1,250 @@
+﻿@model VmHome
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section id="titleforall">
+    <div class="titlecontact">
+        <i class="fa-solid fa-house"></i>
+        <p>Brands</p>
+    </div>
+
+</section>
+
+
+<section id="left">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 formarginbrands">
+                <h5>Find Your Favorite Brand</h5>
+
+                <div class="forbrands">
+                    <h6>A</h6>
+                    <a href="">
+                        <p>Apple</p>
+                    </a>
+                    <a href="">
+                        <p>Asus</p>
+                    </a>
+                    <a href="">
+                        <p>Acer</p>
+                    </a>
+                </div>
+
+
+                <div class="forbrands">
+                    <h6>C</h6>
+                    <a href="">
+                        <p>Canon</p>
+                    </a>
+
+                </div>
+
+
+                <div class="forbrands">
+                    <h6>D</h6>
+                    <a href="">
+                        <p>Dell</p>
+                    </a>
+                    <a href="">
+                        <p>Dr.Dre</p>
+                    </a>
+                </div>
+
+
+                <div class="forbrands">
+                    <h6>H</h6>
+                    <a href="">
+                        <p>Hisense</p>
+                    </a>
+                    <a href="">
+                        <p>Huavei</p>
+                    </a>
+                    <a href="">
+                        <p>HP</p>
+                    </a>
+                </div>
+                <div class="forbrands">
+                    <h6>S</h6>
+                    <a href="">
+                        <p>Samsung</p>
+                    </a>
+                    <a href="">
+                        <p>Sony</p>
+                    </a>
+                </div>
+                <div class="forbrands">
+                    <h6>T</h6>
+                    <a href="">
+                        <p>TCL</p>
+                    </a>
+
+                </div>
+                <div class="forbrands">
+                    <h6>L</h6>
+                    <a href="">
+                        <p>Lenovo</p>
+                    </a>
+                    <a href="">
+                        <p>LG</p>
+                    </a>
+                </div>
+                <div class="forbrands">
+                    <h6>O</h6>
+                    <a href="">
+                        <p>OnePlus</p>
+                    </a>
+                    <a href="">
+                        <p>OPPO</p>
+                    </a>
+                </div>
+                <div class="forbrands">
+                    <h6>N</h6>
+                    <a href="">
+                        <p>Nokia</p>
+                    </a>
+                    <a href="">
+                        <p>Nikon</p>
+                    </a>
+                    <a href="">
+                        <p>Nintendo</p>
+                    </a>
+                </div>
+                <div class="forbrands">
+                    <h6>M</h6>
+                    <a href="">
+                        <p>MSI</p>
+                    </a>
+
+                </div>
+                <div class="forbrands">
+                    <h6>F</h6>
+                    <a href="">
+                        <p>Fujifilm</p>
+                    </a>
+                    <a href="">
+                        <p>Fijutsu</p>
+                    </a>
+
+                </div>
+                <div class="forbrands">
+                    <h6>J</h6>
+                    <a href="">
+                        <p>JBL</p>
+                    </a>
+
+
+                </div>
+                <div class="forbrands">
+                    <h6>P</h6>
+                    <a href="">
+                        <p>PlayStation</p>
+                    </a>
+                    <a href="">
+                        <p>Ponosinic</p>
+                    </a>
+                </div>
+                <div class="forbrands">
+                    <h6>X</h6>
+                    <a href="">
+                        <p>Xbox</p>
+                    </a>
+                    <a href="">
+                        <p>Xiaomi</p>
+                    </a>
+
+                </div>
+                <div class="forbrands">
+                    <h6>X</h6>
+                    <a href="">
+                        <p>Xbox</p>
+                    </a>
+
+                </div>
+                <div class="forbrands">
+                    <h6>G</h6>
+                    <a href="">
+                        <p>Go Pro</p>
+                    </a>
+
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="forborder">
+                    <h5>Information</h5>
+                    <a href="">
+                        <p>About us</p>
+                    </a>
+                    <a href="">
+                        <p>Delivery Information </p>
+                    </a>
+                    <a href="">
+                        <p>Privacy Policy </p>
+                    </a>
+                    <a href="">
+                        <p>Terms & Conditions </p>
+                    </a>
+                    <a href="">
+                        <p>Contact Us </p>
+                    </a>
+                </div>
+                @foreach (var item in Model.Advertisings)
+                {
+            <div>
+                <a href="@item.Link"><img class="reklamucun" src="~/UploadsAdvertising/@item.Image" alt=""></a>
+            </div>}
+
+
+
+
+                <div class="forborder">
+                    <h5>Latest</h5>
+
+                    @{ int v = 0; }
+                    @foreach (var item in Model.Products.OrderByDescending(m => m.Image))
+                    {
+                        if (v < 3)
+                        {
+                            DateTime? itemDiscount = item.DiscountDate;
+                            if (itemDiscount != null && itemDiscount > DateTime.Now)
+                            {
+            <div class="d-flex forhoverimage">
+                <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@item.Id">
+
+                    <img src="~/UploadsProducts/@item.Image" alt="">
+                    <div class="latest">
+                        <p> @item.Brand (@item.Model)</p>
+                        <div class="d-flex">
+                            <p class="latestp1">@item.DiscountPrice</p>
+                            <p class="latestp2">@item.Price</p>
+                        </div>
+                    </div>
+
+                </a>
+
+            </div>v++;
+        }
+
+    }
+
+}
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+<section id="button">
+    <a class="top_button" title="Back To Top" href="#"></a>
+</section>
+
+
+
+
+
+

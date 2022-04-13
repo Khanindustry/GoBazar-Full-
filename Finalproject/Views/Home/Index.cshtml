@@ -1,0 +1,374 @@
+﻿@model VmHome
+@{ ViewData["Title"] = "Home Page"; }
+
+<section id="slider-2">
+
+    <div class="owl-slider owl-carousel owl-theme ">
+        @foreach (var item in Model.Slider)
+        {
+<div class="item">
+    <img class="formaxweidh" src="~/UploadsSlider/@item.Image" alt="...">
+</div>}
+
+    </div>
+</section>
+
+<section id="icons">
+    <div class="container forpadding ">
+        <div class="row forcenter">
+            @foreach (var item in Model.Service)
+            {
+<div class="col-md-3 ">
+    <div><i class="@item.Icon icons1"></i></div>
+    <div>
+        <h5>@item.Title1</h5>
+        <p>@item.Title2</p>
+    </div>
+</div>      }
+
+        </div>
+    </div>
+</section>
+<section id="cta-main-homepage">
+    <div class="container xiomiair">
+        <div class="row midotspadding">
+            <div class="col-lg-5 col-sm-8 offset-sm-2 offset-lg-0">
+                <div class="inner-content">
+                    <span class="banner">Flash Deal!</span>
+                    <h4>Xiaomi Mi Dots</h4>
+                    <div class="counter">
+                        <h6 class="price">
+                            <em>$49.99</em>
+                            <br> $39.99
+                        </h6>
+                        <div class="row">
+                            <div class="timer">
+                                <div class="col-3">
+                                    <div id="days"></div>
+                                    <span>Days</span>
+                                </div>
+                                <div class="col-3">
+                                    <div id="hours"></div>
+                                    <span>Hours</span>
+                                </div>
+                                <div class="col-3">
+                                    <div id="minutes"></div>
+                                    <span>Minutes</span>
+                                </div>
+                                <div class="col-3">
+                                    <div id="seconds"></div>
+                                    <span>Seconds</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-dark-button">
+                        <a href="#">Get It Now!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="newirrevilitem">
+    <div class="container">
+        <div class="row news">
+            <div class="col-lg-12">
+                <div class="col-lg-12  arrivel">
+                    <h5>New Arrival Item</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            @{ int t = 0; foreach (var item in Model.Products.OrderByDescending(m => m.Id))
+                {
+
+                    if (t < 8)
+                    {
+    <div class="col-lg-3   col-md-4 col-6  specialsimage">
+        <div class="card">
+            <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@item.Id">
+                <img src="~/UploadsProducts/@item.Image" alt="">
+            </a>
+
+            <span class="specialspan">@item.Discountfaiz</span>
+            <div class="card-body">
+                <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@item.Id">
+                    <h6 class="card-title">@item.Model (@item.Color) </h6>
+                </a>
+
+                <div class="d-flex">
+                    @{DateTime? itemDiscount = item.DiscountDate; }
+                    @if (itemDiscount == null )
+                    {
+                                         <h5 class="latestp1">@item.Price</h5> }
+                                    else
+                                    {
+                                              <h5 class="latestp1">@item.DiscountPrice</h5>
+                                        <p class="latestp2">@item.Price</p>}
+
+
+
+                </div>
+                <i class="fa-solid fa-cart-shopping c1"></i>
+                <a asp-controller="Product" asp-action="addToCart" asp-route-id="@item.Id" class="btn   @(Model.Cart2 != null && Model.Cart2.Any(c => c == item.Id.ToString()) == true ? "foradd2" : "foradd")">Add to cart</a>
+            </div>
+        </div>
+    </div> t++;
+
+}
+
+} }
+        </div>
+    </div>
+
+</section>
+
+
+<section id="loudspekar">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="kalonkashadov">
+                    <img class="forrelatitve1 img-fluid" src="~/UploadsHomeImgae/@Model.HomeImage1.Image" alt="">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="newirrevilitem">
+    <div class="container">
+        <div class="row news">
+            <div class="col-lg-12">
+                <div class="col-lg-12  arrivel">
+                    <h5>
+                        Products
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            @{ int r = 0;
+
+
+
+                foreach (var item in Model.Products.OrderByDescending(m => m.Brand))
+                {
+
+                    if (r < 8)
+                    {
+    <div class="col-lg-3   col-md-4 col-6  specialsimage">
+        <div class="card">
+            <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@item.Id">
+                <img src="~/UploadsProducts/@item.Image" alt="">
+            </a>
+            @{ DateTime? itemDiscount = item.DiscountDate;
+                if (itemDiscount != null && itemDiscount > DateTime.Now)
+                {
+<span class="specialspan">@item.Discountfaiz</span> } }
+            <div class="card-body">
+                <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@item.Id"> <h6 class="card-title">@item.Model (@item.Color) </h6></a>
+                <div class="d-flex">
+
+                    @if (itemDiscount != null && itemDiscount > DateTime.Now)
+                    {
+<h5 class="latestp1">@item.DiscountPrice</h5>
+                        <p class="latestp2">@item.Price</p> }
+                    else
+                    {
+<h5 class="latestp1">@item.Price</h5>}
+                </div>
+                <i class="fa-solid fa-cart-shopping c1"></i>
+                <a asp-controller="Product" asp-action="addToCart" asp-route-id="@item.Id" class="btn   @(Model.Cart2 != null && Model.Cart2.Any(c => c == item.Id.ToString()) == true ? "foradd2" : "foradd")">Add to cart</a>
+            </div>
+        </div>
+    </div> r++;
+}
+} }
+        </div>
+    </div>
+
+</section>
+
+<section id="salefor">
+    <div class="container p1">
+        <div class="row a1">
+            @foreach (var item in Model.FlashDeal2)
+            {
+<div class="col-lg-6 f1">
+    <div class="q1">
+        <img class="forrelatitve img-fluid " src="~/UploadsFlas/@item.Image" alt="">
+        <div class="img-3">
+            <h6>@item.Uptitle</h6>
+            <h3>@item.Title</h3>
+            <a href="@item.Link">
+                <p>Shop Now</p>
+            </a>
+        </div>
+
+    </div>
+
+</div>      }
+
+
+
+        </div>
+
+
+    </div>
+</section>
+
+
+<section id="newirrevilitem">
+    <div class="container">
+        <div class="row news">
+            <div class="col-lg-12">
+                <div class="col-lg-12  arrivel">
+                    <h5>Specials</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+
+            @{ int v = 0;
+
+
+    @foreach (var item in Model.Products.OrderByDescending(m => m.Id))
+    {
+        if (v < 8)
+        {
+            DateTime? itemDiscount = item.DiscountDate;
+            if (itemDiscount != null && itemDiscount > DateTime.Now)
+            {
+
+<div class="col-lg-3   col-md-4 col-6  specialsimage">
+    <div class="card">
+        <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@item.Id">
+            <img src="~/UploadsProducts/@item.Image" alt="">
+        </a>
+
+        <span class="specialspan">@item.Discountfaiz</span>
+        <div class="card-body">
+            <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@item.Id">
+                <h6 class="card-title">@item.Model (@item.Color) </h6>
+            </a>
+
+            <div class="d-flex">
+                <h5 class="latestp1">@item.DiscountPrice</h5>
+                <p class="latestp2">@item.Price</p>
+            </div>
+            <i class="fa-solid fa-cart-shopping c1"></i>
+            <a asp-controller="Product" asp-action="addToCart" asp-route-id="@item.Id" class="btn   @(Model.Cart2!=null && Model.Cart2.Any(c=>c==item.Id.ToString())==true?"foradd2":"foradd")">Add to cart</a>
+        </div>
+    </div>
+</div>v++;
+}
+
+
+
+
+}
+
+} }
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+</section>
+
+<section id="blogs">
+    <div class="container ">
+        <div class="row ">
+            <div class="col-lg-12  arrivel1">
+                <h5>Blogs</h5>
+            </div>
+            <div class="owl-blog owl-carousel owl-theme container">
+                @foreach (var item in Model.Blog)
+                {
+    <div class="item">
+        <div class="col-lg-12 forimagetop5">
+            <div class="q3">
+                <img src="~/UploadsBlog/@item.Image" alt="">
+                <a asp-controller="Blog" asp-action="Blogdetails" asp-route-id="@item.Id">
+                    <h5>@item.Uptitle</h5>
+                </a>
+                <div class="d-flex bgcolor">
+                    <i class="fa-solid fa-calendar"></i>
+                    <p>@item.CreatedDate</p>    
+                </div>
+                <p>
+                    @(item.Title.Length>200? item.Title.Substring(0,200)+"...": item.Title)
+                </p>
+                <a class="backcolorfora" asp-controller="Blog" asp-action="Blogdetails" asp-route-id="@item.Id">
+                    <p>
+                        Read More
+                    </p>
+                </a>
+            </div>
+        </div>
+    </div>}
+            
+
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+<section id="brands">
+    <div class="container ">
+        <div class="row ">
+            <div class="col-lg-12 arrivel1">
+                <h5>Brands</h5>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="owl-carousel owl-theme container">
+        @foreach (var item in Model.BrandsLogos)
+        {
+<div class="item ">
+    <a href="@item.Link">
+        <img src="~/UploadsBrandlogo/@item.Image" alt="">
+    </a>
+</div>}
+
+
+    </div>
+</section>
+<section id="button">
+    <a class="top_button" title="Back To Top" href="#"></a>
+</section>

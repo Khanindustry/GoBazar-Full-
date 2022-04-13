@@ -1,0 +1,139 @@
+﻿@model Product
+@{ ViewData["Title"] = "SpecialDeatails"; }
+
+<section id="left">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12  specialsimage">
+
+                                @{ DateTime? itemDiscount = Model.DiscountDate;
+                                  
+                            <div class="card">
+                                <img class="tukendim" src="~/UploadsProducts/@Model.Image" alt="">
+                                <span class="specialspan">@Model.Discountfaiz</span>
+                                <div class="card-body">
+                                    <h6 class="card-title">@Model.Brand @Model.Model</h6>
+                                    <div class="fontsizedetails">
+                                        <p>Brand:@Model.Brand</p>
+                                        <p>Model:@Model.Model</p>
+                                        <p>Color:@Model.Color</p>
+                                    </div>
+
+
+                                    <div class="d-flex">
+                                        @if (itemDiscount != null && itemDiscount > DateTime.Now)
+                                        {
+                                    <h5 class="latestp1">@Model.DiscountPrice</h5>
+                                                        <p class="latestp2">@Model.Price</p> }
+                                                    else
+                                                    {
+                                    <h5 class="latestp1">@Model.Price</h5>}
+                                    </div>
+                                    <i class="fa-solid fa-cart-shopping c1"></i>
+                                    <a asp-controller="Product" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn foradd   ">Add to cart</a>
+                                </div>
+                            </div>
+                                        }
+                                    
+
+                                        </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="forborder">
+                    <h5>Information</h5>
+                    <a href="">
+                        <p>About us</p>
+                    </a>
+                    <a href="">
+                        <p>Delivery Information </p>
+                    </a>
+                    <a href="">
+                        <p>Privacy Policy </p>
+                    </a>
+                    <a href="">
+                        <p>Terms & Conditions </p>
+                    </a>
+                    <a href="">
+                        <p>Contact Us </p>
+                    </a>
+                </div>
+
+                <img class="reklamucun" src="/img/left-banner-315x460 (1).jpg" alt="">
+                <div class="forborder">
+                    <h5>Latest</h5>
+
+                    <div class="d-flex forhoverimage">
+                        <a href="">
+                            <div class="imgg">
+
+                            </div>
+                            <div class="latest">
+                                MacBook Pro (Retina, 15-inch, 8-Core CPU)
+                                <div class="d-flex">
+                                    <p class="latestp1">$26.00</p>
+                                    <p class="latestp2">$241.99</p>
+                                </div>
+                            </div>
+
+                        </a>
+
+                    </div>
+                    <div class="d-flex forhoverimage">
+                        <a href="">
+                            <div class="imgg">
+
+                            </div>
+                            <div class="latest">
+                                MacBook Pro (Retina, 15-inch, 8-Core CPU)
+                                <div class="d-flex">
+                                    <p class="latestp1">$26.00</p>
+                                    <p class="latestp2">$241.99</p>
+                                </div>
+                            </div>
+
+                        </a>
+
+                    </div>
+                    <div class="d-flex forhoverimage">
+                        <a href="">
+
+                            <div class="imgg">
+
+                            </div>
+                            <div class="latest">
+                                MacBook Pro (Retina, 15-inch, 8-Core CPU)
+                                <div class="d-flex">
+                                    <p class="latestp1">$26.00</p>
+                                    <p class="latestp2">$241.99</p>
+                                </div>
+                            </div>
+
+                        </a>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+
+    </div>
+</section>
+<section id="button">
+    <a class="top_button" title="Back To Top" href="#" style="display: block;"></a>
+</section>

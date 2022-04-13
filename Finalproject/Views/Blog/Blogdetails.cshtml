@@ -1,0 +1,119 @@
+﻿@model Blog 
+@{
+    ViewData["Title"] = "Blogdetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section id="left">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 forimagetop5">
+
+
+                <div class=" ">
+
+                    <h5>@Model.Uptitle</h5>
+                    <img class="forblogimage" src="~/UploadsBlog/@Model.Image" alt="">
+                    <p class="marginpreadmore">
+                        @Model.Title
+                    </p>
+
+                </div>
+                <input asp-for="@Model.Id" hidden />
+               
+
+            </div>
+            <div class="col-lg-4">
+                <div class="forborder">
+                    <h5>Information</h5>
+                    <a href="">
+                        <p>About us</p>
+                    </a>
+                    <a href="">
+                        <p>Delivery Information </p>
+                    </a>
+                    <a href="">
+                        <p>Privacy Policy </p>
+                    </a>
+                    <a href="">
+                        <p>Terms & Conditions </p>
+                    </a>
+                    <a href="">
+                        <p>Contact Us </p>
+                    </a>
+                </div>
+
+                <img class="reklamucun" src="~/img/left-banner-315x460 (1).jpg" alt="">
+                <div class="forborder">
+                    <h5>Latest</h5>
+
+                    <div class="d-flex forhoverimage">
+                        <a href="">
+                            <div class="imgg">
+
+                            </div>
+                            <div class="latest">
+                                MacBook Pro (Retina, 15-inch, 8-Core CPU)
+                                <div class="d-flex">
+                                    <p class="latestp1">$26.00</p>
+                                    <p class="latestp2">$241.99</p>
+                                </div>
+                            </div>
+
+                        </a>
+
+                    </div>
+                    <div class="d-flex forhoverimage">
+                        <a href="">
+                            <div class="imgg">
+
+                            </div>
+                            <div class="latest">
+                                MacBook Pro (Retina, 15-inch, 8-Core CPU)
+                                <div class="d-flex">
+                                    <p class="latestp1">$26.00</p>
+                                    <p class="latestp2">$241.99</p>
+                                </div>
+                            </div>
+
+                        </a>
+
+                    </div>
+                    <div class="d-flex forhoverimage">
+                        <a href="">
+
+                            <div class="imgg">
+
+                            </div>
+                            <div class="latest">
+                                MacBook Pro (Retina, 15-inch, 8-Core CPU)
+                                <div class="d-flex">
+                                    <p class="latestp1">$26.00</p>
+                                    <p class="latestp2">$241.99</p>
+                                </div>
+                            </div>
+
+                        </a>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+            
+
+        </div>
+    </div>
+
+    </div>
+    </div>
+
+</section>
+<section id="button">
+    <a class="top_button" title="Back To Top" href="#" style="display: block;"></a>
+</section>
+
+

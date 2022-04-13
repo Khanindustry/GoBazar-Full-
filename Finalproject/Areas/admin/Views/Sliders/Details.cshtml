@@ -1,0 +1,23 @@
+﻿@model Finalproject.Models.Slider
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Slider</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            <img src="~/Uploads/@Model.Image" alt="Alternate Text" style="max-width:500px; max-height:500px" />
+        </dt>
+       
+    </dl>
+</div>
+<div>
+    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a class="btn btn-info" asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,54 @@
+﻿@model VmHome
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-danger">NOTE!:Her Categoryaya gore bir TITLE yazmaq kifayet eder digerlerinin yazilib yazilmamagi sizden asilidir.</h1>
+
+<p>
+    <a class="btn btn-success  mt-3" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+
+    <tbody>
+@foreach (var item in Model.SubCategories) {
+        <tr>
+            <td>
+                <img src="~/UploadsSubcategory/@item.Image" alt="Alternate Text" style="max-width:50px; max-height:50px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<nav aria-label="...">
+    <ul class="pagination">
+        <li class="page-item @(Model.Page == 1 ? "disabled" : "")">
+            <a class="page-link pageItemCount" asp-area="admin" asp-controller="SubCategories" asp-action="index" asp-route-page="@(Model.Page - 1)" asp-route-itemCount="@Model.ItemCount">Previous</a>
+        </li>
+        @for (int i = 1; i <= Model.PageCount; i++)
+        {
+<li class="page-item @(Model.Page == i ? "active" : "")" aria-current="page">
+    <a class="page-link pageItemCount" asp-area="admin" asp-controller="SubCategories" asp-action="index" asp-route-page="@i" asp-route-itemCount="@Model.ItemCount">@i</a>
+</li>
+}
+        <li class="page-item @(Model.Page == Model.PageCount ? "disabled" : "")">
+            <a class="page-link pageItemCount" asp-area="admin" asp-controller="SubCategories" asp-action="index" asp-route-page="@(Model.Page + 1)" asp-route-itemCount="@Model.ItemCount">Next</a>
+        </li>
+    </ul>
+</nav>

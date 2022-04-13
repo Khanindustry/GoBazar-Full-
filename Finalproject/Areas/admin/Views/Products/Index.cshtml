@@ -1,0 +1,72 @@
+﻿@model VmHome
+
+@{ ViewData["Title"] = "Index";
+                Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml"; }
+
+<h4 class="text-danger">NOTE!:Her Categoryaya gore bir TITLE yazmaq kifayet eder digerlerinin yazilib yazilmamagi sizden asilidir. <br /> NOTE!:Productar endirimsiz olarsa, o zaman sadece PRICE doldurulur.Eks halda ise DISCOUNT PRICE, DISCOUNTFAIZ doldurulmalidir ve DISCOUNTDATE yeni endirimin bitme tarixi qeyd olunmalidir.Endririm tarixi bitdikden sonra mehsul evvelki veziyyetine qayidir yeni endrimsiz olur <br /> PRiCE=Qiymet <br /> DISCOUTPRICE=Endirim Qiymeti <br />DiSCOUNTFAIZ=Nece faiz endiremde olmagi</h4>
+
+<p>
+    <a class="btn btn-success  mt-3" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <tbody>
+        @foreach (var item in Model.Products)
+        {
+<tr>
+    <td>
+        <img src="~/UploadsProducts/@item.Image" alt="Alternate Text" style="max-width:50px; max-height:50px" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Title)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Model)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Brand)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Color)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Price)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DiscountPrice)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DiscountDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Discountfaiz)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Category.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SubCategory.Name)
+    </td>
+    <td>
+        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+    </td>
+</tr>
+}
+    </tbody>
+</table>
+<nav  aria-label="...">
+    <ul class="pagination">
+        <li class="page-item @(Model.Page == 1 ? "disabled" : "")">
+            <a class="page-link pageItemCount" asp-area="admin" asp-controller="Products" asp-action="index" asp-route-page="@(Model.Page - 1)" asp-route-itemCount="@Model.ItemCount">Previous</a>
+        </li>
+        @for (int i = 1; i <= Model.PageCount; i++)
+        {
+<li class="page-item @(Model.Page == i ? "active" : "")" aria-current="page">
+    <a class="page-link pageItemCount" asp-area="admin" asp-controller="Products" asp-action="index" asp-route-page="@i" asp-route-itemCount="@Model.ItemCount">@i</a>
+</li>}
+        <li class="page-item @(Model.Page == Model.PageCount ? "disabled" : "")">
+            <a class="page-link pageItemCount" asp-area="admin" asp-controller="Products" asp-action="index" asp-route-page="@(Model.Page + 1)" asp-route-itemCount="@Model.ItemCount">Next</a>
+        </li>
+    </ul>
+</nav>

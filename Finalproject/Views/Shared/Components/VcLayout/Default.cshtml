@@ -1,0 +1,126 @@
+﻿@model VmContact
+
+<footer>
+    <div class="forcolor">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 b2">
+                    <i class="fa-solid fa-plane"></i>
+                    <span>Sign Up For Newslatter</span>
+                </div>
+                <div class="col-lg-6 d-flex">
+                    <input type="email" name="txtemail" id="txtemail" value="" placeholder="Enter Your Email"
+                           class="form-control input-lg" />
+                    <button class="b1">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container forpend">
+        <div class="row">
+            <div class="col-lg-3 col-6 s1">
+                <img class="s1" src="~/Uploadssetting/@Model.Setting.Logo" alt="">
+                <h5>(+00) 012 345 67 89</h5>
+                <div class="d-flex">
+                    <i class="fa-solid fa-location-dot fa-solids1"></i>
+                    <p>
+                        @Model.Setting.Location
+                    </p>
+                </div>
+                <div class="d-flex">
+                    <i class="fa-solid fa-phone fa-solids1"></i>
+                    <p>@Model.Setting.Phone</p>
+                </div>
+                <div class="d-flex">
+                    <i class="fa-solid fa-comment-dots fa-solids1"></i>
+                    <p>@Model.Setting.Email
+                </div>
+            </div>
+            <div class="col-lg-3 col-6 s2 px-5 ">
+                <h5>My Account</h5>
+                <a href="">
+                    <p>My Account</p>
+                </a>
+                <a href="">
+                    <p>Order History</p>
+                </a>
+                <a href="">
+                    <p>Wish List</p>
+                </a>
+                <a href="">
+                    <p>Affiliates</p>
+                </a>
+                <a href="">
+                    <p>Newsletter</p>
+                </a>
+            </div>
+            <div class="col-lg-3 col-6 s2 ">
+                <h5>Customer Service</h5>
+                <a href="">
+                    <p>Contact Us</p>
+                </a>
+                <a href="">
+                    <p>Site Map</p>
+                </a>
+                <a href="">
+                    <p>Order History</p>
+                </a>
+                <a href="">
+                    <p>Newsletter</p>
+                </a>
+                <a href="">
+                    <p>Gift Certificates</p>
+                </a>
+            </div>
+            <div class="col-lg-3 col-6 s2 px-5 ">
+                <h5>Information</h5>
+                <a href="">
+                    <p>About Us</p>
+                </a>
+                <a href="">
+                    <p>Delivery Information</p>
+                </a>
+                <a href="">
+                    <p>Aprivacy Policy</p>
+                </a>
+                <a href="">
+                    <p>Contact Us</p>
+                </a>
+                <a href="">
+                    <p>Terms & Conditions</p>
+                </a>
+            </div>
+
+
+            <div class="foricons1">
+                @foreach (var item in Model.Socials)
+                {
+                    <a href="@item.Link"><i class="@item.Icon"></i></a>
+                }
+
+
+            </div>
+
+        </div>
+    </div>
+    <div class="v1">
+        <div class="container forpaddingv">
+            <div class="row">
+                <div class="col-lg-6 v2">
+                    <p>@Model.Setting.Poweredby</p>
+                </div>
+                <div class="col-lg-6 v3">
+                    <a href=""> <img src="img/visa.jpg" alt=""></a>
+                    <a href=""> <img src="img/discover.jpg" alt=""></a>
+                    <a href=""> <img src="img/payment.jpg" alt=""></a>
+                    <a href=""> <img src="img/paypal.jpg" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</footer>

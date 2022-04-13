@@ -1,0 +1,57 @@
+﻿@model VmHome
+
+@{ ViewData["Title"] = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml"; }
+
+<h1 class="text-danger">Search for Product</h1>
+
+<p>
+    <a class="btn btn-success  mt-3" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <tbody>
+        @foreach (var item in Model.Products)
+        {
+<tr>
+    <td>
+        <img src="~/UploadsProducts/@item.Image" alt="Alternate Text" style="max-width:50px; max-height:50px" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Title)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Model)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Brand)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Color)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Price)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DiscountPrice)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DiscountDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Discountfaiz)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Category.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SubCategory.Name)
+    </td>
+    <td>
+        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+    </td>
+</tr>}
+    </tbody>
+</table>
+
